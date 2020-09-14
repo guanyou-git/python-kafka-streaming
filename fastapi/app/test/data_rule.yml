@@ -1,0 +1,18 @@
+rule:
+  metadata:
+    rule_id : 1
+  signature_id:
+    - 12345678
+  steps:
+    - base.unhex
+      - input:
+        - hexfield
+      - output:
+        - decryptfield
+    - base.regmatch
+      - input:
+        - decryptfield
+        - ".*session"
+      - output:
+        - valid_treat
+

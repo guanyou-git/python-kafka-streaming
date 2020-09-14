@@ -1,0 +1,1 @@
+{"signature_id": 12345678, "rule_ids": 1, "rules": [{"function":"base.unhex","input":["hexfield","FFFF09%FFFFFFFFF%08"],"output":["decryptfield"]},{"function":"base.regmatch","input":["decryptfield",".*session"],"output":["valid_treat"]}]}
