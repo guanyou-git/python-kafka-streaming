@@ -29,17 +29,15 @@ services:
       - '80:80'
     volumes:
       - 'scripts_datastore:/app/validation_store'
+    env_file:
+      - fastapi.env_file
   streamingservice:
     build: ./streamingservice/
     container_name: streamingservice
     volumes:
       - 'scripts_datastore:/validation_store'
-    environment:
-      - kafka_topic_in='test.prototype.event.raw'
-      - kafka_topic_norule='test.prototype.event.norule'
-      - kafka_topic_pendingvalidation='test.prototype.event.pendingvalidation'
-      - kafka_topic_true='test.prototype.event.true'
-      - kafka_topic_false='test.prototype.event.false'
+    env_file:
+      - streamingservice.env_file
 
 volumes:
   zookeeper_data:

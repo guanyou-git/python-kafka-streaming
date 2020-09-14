@@ -2,6 +2,18 @@ from confluent_kafka import Consumer, KafkaException
 import sys
 import json
 
+# Use Kafka producer to publish data to Kafka
+# Use Kafka consumer to consume data from Kafka
+
+
+def prepare_source():
+    # Check if topic exist, print error
+    # 
+
+
+
+
+
 
 if __name__ == '__main__':
     broker, group, topics = sys.argv[1], sys.argv[2], sys.argv[3:]
@@ -23,4 +35,9 @@ if __name__ == '__main__':
                       msg.key(), msg.value())
     finally:
         consumer.close() # ... to commit final offsets
+
+
+
+
+
 
