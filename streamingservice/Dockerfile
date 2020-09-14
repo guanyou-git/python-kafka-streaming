@@ -7,3 +7,6 @@ RUN pip download confluent-kafka
 #RUN pip install /python_packages/*
 
 COPY ./app /app
+
+ENTRYPOINT ["tail","-f","dev/null"]
+
