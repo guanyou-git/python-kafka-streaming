@@ -28,12 +28,23 @@ services:
     ports:
       - '80:80'
     volumes:
-      - ./fastapi/app:/app
+      - 'scripts_datastore:/app/validation_store'
+  streamingservice:
+    build: ./streamingservice/
+    container_name: streamingservice
+    volumes:
+      - 'scripts_datastore:/validation_store'
     environment:
       - kafka_topic_in='test.prototype.event.raw'
+      - kafka_topic_norule='test.prototype.event.norule'
+      - kafka_topic_pendingvalidation='test.prototype.event.pendingvalidation'
+      - kafka_topic_true='test.prototype.event.true'
+      - kafka_topic_false='test.prototype.event.false'
 
 volumes:
   zookeeper_data:
     driver: local
   kafka_data:
+    driver: local
+  scripts_datastore:
     driver: local

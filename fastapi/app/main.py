@@ -1,19 +1,7 @@
 from fastapi import Depends, FastAPI, Header, HTTPException
-from fastapi.security import OAuth2PasswordBearer,OAuth2PasswordRequestForm
 
-# Security
 from datetime import datetime, timedelta
 from pydantic import BaseModel
-import jwt
-from jwt import PyJWTError
-from passlib.context import CryptContext
-
-# to get a string like this run:
-# openssl rand -hex 32
-SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
-
 
 from starlette.staticfiles import StaticFiles
 
@@ -45,7 +33,9 @@ async def return_health():
     return str(datetime.now())
 
 
-# Overwrite docs function for static files
+####################################################
+# Function to serve offline swagger and static files
+####################################################
 async def swagger_ui_html(req: Request) -> HTMLResponse:
     return get_swagger_ui_html(
         openapi_url=app.openapi_url,
@@ -76,4 +66,3 @@ async def redoc_html(req: Request) -> HTMLResponse:
     )
 
 app.add_route('/redoc', redoc_html, include_in_schema=False)
-
