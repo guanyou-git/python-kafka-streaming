@@ -6,5 +6,7 @@ RUN pip install /python_packages/*
 
 COPY ./app /app
 
-ENTRYPOINT ["tail","-f","dev/null"]
+CMD ["python","/app/main.py"]
+#ENTRYPOINT ["tail","-f","dev/null"]
+
 

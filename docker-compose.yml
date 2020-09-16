@@ -22,10 +22,18 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
-  # Publish service for testing
   publishservice:
     build: ./publishservice/
     container_name: publishservice
+    volumes:
+      - 'scripts_datastore:/validation_store'
+    env_file:
+      - streamingservice.env
+    depends_on:
+      - kafka
+  streamingservice:
+    build: ./streamingservice/
+    container_name: streamingservice
     volumes:
       - 'scripts_datastore:/validation_store'
     env_file:
@@ -41,13 +49,6 @@ services:
 #      - 'scripts_datastore:/app/validation_store'
 #    env_file:
 #      - fastapi.env
-#  streamingservice:
-#    build: ./streamingservice/
-#    container_name: streamingservice
-#    volumes:
-#      - 'scripts_datastore:/validation_store'
-#    env_file:
-#      - streamingservice.env
 
 volumes:
   zookeeper_data:
