@@ -22,22 +22,30 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
-  fastapi:
-    build: ./fastapi/
-    container_name: fastapi
-    ports:
-      - '80:80'
-    volumes:
-      - 'scripts_datastore:/app/validation_store'
-    env_file:
-      - fastapi.env_file
-  streamingservice:
-    build: ./streamingservice/
-    container_name: streamingservice
+  # Publish service for testing
+  publishservice:
+    build: ./publishservice/
+    container_name: publishservice
     volumes:
       - 'scripts_datastore:/validation_store'
     env_file:
-      - streamingservice.env_file
+      - streamingservice.env
+#  fastapi:
+#    build: ./fastapi/
+#    container_name: fastapi
+#    ports:
+#      - '80:80'
+#    volumes:
+#      - 'scripts_datastore:/app/validation_store'
+#    env_file:
+#      - fastapi.env
+#  streamingservice:
+#    build: ./streamingservice/
+#    container_name: streamingservice
+#    volumes:
+#      - 'scripts_datastore:/validation_store'
+#    env_file:
+#      - streamingservice.env
 
 volumes:
   zookeeper_data:
