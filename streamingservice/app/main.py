@@ -17,11 +17,19 @@ KAFKA_CONSUMER_GROUP_ID = os.environ.get('KAFKA_CONSUMER_GROUP_ID')
 
 if __name__ == '__main__':
 
-    topics = [KAFKA_TOPIC_RAW]
+    # This application will:
+    # 1) consume messages from RAW
+    # 2) extract id from messages
+    # 3) populate lookup_list (every minute)
+    # 4) do lookup to see if id is in list
+    #     a) if in: publish the message into PENDINGVALIDATION
+    #     b) if not: publish the message into NORULE
+
+    input_topics = [KAFKA_TOPIC_RAW]
     consumer = Consumer({'bootstrap.servers': KAFKA_BROKERS, 'group.id': KAFKA_CONSUMER_GROUP_ID,
 			'auto.offset.reset': 'earliest'})
     clb = lambda consumer, p: print('Assigned partition:', p)
-    consumer.subscribe(topics, on_assign=clb)
+    consumer.subscribe(input_topics, on_assign=clb)
 
     try:
         while True:
