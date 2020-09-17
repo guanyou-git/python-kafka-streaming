@@ -37,3 +37,8 @@ $source ~/.bashrc
 
 $./kafka_init_commands.sh
 ```
+
+## UI
+```bash
+https://stackblitz.com/edit/react-tvqvx4?file=index.js
+``
