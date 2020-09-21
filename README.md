@@ -7,7 +7,7 @@ Append the -d (detached mode) and --build (re-buid images) to startup the docker
 $docker-compose up -d --build
 ```
 
-## INITIALIZE DOCKER VOLUME
+## Initialize docker volume
 
 To inspect the location of docker volume, you may run the following command
 
@@ -22,7 +22,7 @@ Take note of the "Mountpoint", copy the directory location, and migrate base val
 $cp -r ./validation_store/* <SPECIFY MOUNTPOINT HERE>/
 ```
 
-## INITIALIZE KAFKA TOPICS
+## Initialize kafka topics
 
 To create topics with kafka, you would need to untar the Kafka binary files and add the bin to your export path
 

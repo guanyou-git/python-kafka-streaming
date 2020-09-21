@@ -2,6 +2,7 @@ from confluent_kafka import Consumer, KafkaException
 import os
 import sys
 import json
+import glob
 
 # Use Kafka producer to publish data to Kafka
 # Use Kafka consumer to consume data from Kafka
@@ -14,6 +15,13 @@ KAFKA_TOPIC_TRUE = os.environ.get('KAFKA_TOPIC_TRUE')
 KAFKA_TOPIC_FALSE = os.environ.get('KAFKA_TOPIC_FALSE')
 
 KAFKA_CONSUMER_GROUP_ID = os.environ.get('KAFKA_CONSUMER_GROUP_ID')
+
+
+
+def get_list_of_validation_scripts():
+    file_list = glob.glob("/validation_store/*.py")
+    return file_list
+
 
 if __name__ == '__main__':
 
