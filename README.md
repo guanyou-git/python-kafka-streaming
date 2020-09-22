@@ -38,7 +38,15 @@ $source ~/.bashrc
 $./kafka_init_commands.sh
 ```
 
-## UI
+## To initiate the prometheus, grafana plugin, kudos to https://github.com/stefanprodan/dockprom
+
+```bash
+$cd ../dockprom
+$ADMIN_USER=admin ADMIN_PASSWORD=admin docker-compose up -d
+```
+
+
+## Sample ReactJS UI
 ```bash
 https://stackblitz.com/edit/react-tvqvx4?file=index.js
 ``
