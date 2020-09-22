@@ -4,7 +4,8 @@ COPY ./python_packages /python_packages
 
 
 WORKDIR /python_packages
-RUN pip download confluent-kafka
+RUN pip download prometheus_client
+#RUN pip download confluent-kafka
 
 #RUN pip install /python_packages/*
 WORKDIR /
